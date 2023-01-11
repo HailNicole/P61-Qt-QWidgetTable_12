@@ -6,7 +6,6 @@ Persona::Persona(QObject *parent)
 
 }
 
-
 Persona::Persona(const QString &nombre, const QString &apellido, const QString &telefono, const QString &email) :
     m_nombre(nombre),
     m_apellido(apellido),

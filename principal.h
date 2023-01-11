@@ -27,6 +27,8 @@ private slots:
 
     void on_btnEliminar_clicked();
 
+    void on_btnEditar_clicked();
+
 private:
     Ui::Principal *ui;
     const QString ARCHIVO = "agenda.csv";

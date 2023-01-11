@@ -14,7 +14,6 @@ public:
     const QString &apellido() const;
     const QString &telefono() const;
     const QString &email() const;
-
 signals:
 
 private:

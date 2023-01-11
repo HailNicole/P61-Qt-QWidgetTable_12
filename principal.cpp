@@ -1,7 +1,6 @@
 #include "principal.h"
 #include "ui_principal.h"
 
-
 #include "QDebug"
 
 Principal::Principal(QWidget *parent)
@@ -25,7 +24,6 @@ Principal::~Principal()
     delete ui;
 }
 
-
 void Principal::on_btnAgregar_clicked()
 {
     // Crear y mostrar el dialogo
@@ -45,7 +43,6 @@ void Principal::on_btnAgregar_clicked()
     ui->tblLista->setItem(fila, APELLIDO, new QTableWidgetItem(p->apellido()));
     ui->tblLista->setItem(fila, TELEFONO, new QTableWidgetItem(p->telefono()));
     ui->tblLista->setItem(fila, EMAIL, new QTableWidgetItem(p->email()));
-    ui->tblLista->selectionMode();
 }
 
 
@@ -106,37 +103,60 @@ void Principal::cargarContactos()
 
 void Principal::on_btnEliminar_clicked()
 {
-    QList<QTableWidgetItem*>selec = ui->tblLista->selectedItems();
-    qDebug() << "Lista original: " << selec;
-    int row = ui->tblLista->rowCount();
 
     QList<QModelIndex>big = ui->tblLista->selectionModel()->selectedRows();
-    qDebug() << "Lista original 2: " << big;
 
     if(big.isEmpty()){
-        QMessageBox::information(this,"Seleccion","No se ha seleccionado nada :|");
+        QMessageBox::information(this,"Seleccion","No se ha seleccionado ninguna fila :|");
         return;
     }
 
     QList<int> list;
     QList<int>::iterator x;
-
     QList<QModelIndex>::iterator i;
+
     for (i = big.begin(); i != big.end(); i++){
-        //qDebug() << *i;
         list.append(i->row());
-        ui->tblLista->item(1, 0)->text();
     }
 
     for (x = list.begin(); x != list.end(); x++){
-        QString rem = ui->tblLista->item(*x, 0)->text();
-        qDebug() << *x;
         ui->tblLista->removeRow(*x);
     }
+}
 
-    if(row>0){
-        /*int current = ui->tblLista->currentRow();
-        ui->tblLista->removeRow(current);*/
+
+void Principal::on_btnEditar_clicked()
+{
+    QList<QModelIndex>seleccion = ui->tblLista->selectionModel()->selectedRows();
+
+    if(seleccion.isEmpty()){
+        QMessageBox::information(this,"Seleccion","No se ha seleccionado ninguna fila :|");
+        return;
     }
+
+    int row = ui->tblLista->currentRow();
+    qDebug() << row ;
+
+    QTableWidgetItem *nombre = ui->tblLista->item(row, NOMBRE);
+    QTableWidgetItem *apellido = ui->tblLista->item(row, APELLIDO);
+    QTableWidgetItem *telefono = ui->tblLista->item(row, TELEFONO);
+    QTableWidgetItem *email = ui->tblLista->item(row, EMAIL);
+
+    PersonaDialog pd(this);
+    pd.setWindowTitle("Agregar contacto");
+
+    pd.set_datos(nombre->text(), apellido->text(), telefono->text(), email->text());
+
+    int res = pd.exec();
+    if (res == QDialog::Rejected){
+        return;
+    }
+    // Recuperar el objeto del cuadro de dialogo
+    Persona *p = pd.persona();
+
+    ui->tblLista->setItem(row, NOMBRE, new QTableWidgetItem(p->nombre()));
+    ui->tblLista->setItem(row, APELLIDO, new QTableWidgetItem(p->apellido()));
+    ui->tblLista->setItem(row, TELEFONO, new QTableWidgetItem(p->telefono()));
+    ui->tblLista->setItem(row, EMAIL, new QTableWidgetItem(p->email()));
 }
 

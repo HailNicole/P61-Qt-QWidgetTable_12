@@ -2,7 +2,7 @@
 #define PERSONADIALOG_H
 
 #include <QDialog>
-
+#include <QMessageBox>
 #include "persona.h"
 
 namespace Ui {
@@ -17,7 +17,7 @@ public:
     explicit PersonaDialog(QWidget *parent = nullptr);
     ~PersonaDialog();
     Persona *persona() const;
-
+    void set_datos(QString nom, QString ape, QString tel, QString email);
 private slots:
     void on_buttonBox_accepted();
     void on_buttonBox_rejected();
@@ -25,6 +25,7 @@ private slots:
 private:
     Ui::PersonaDialog *ui;
     Persona *m_persona;
+    bool validar_email(QString email);
 };
 
 #endif // PERSONADIALOG_H
