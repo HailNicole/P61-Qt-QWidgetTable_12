@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(247, 225, 83);</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QFormLayout" name="formLayout">
@@ -24,7 +27,11 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="inNombre"/>
+      <widget class="QLineEdit" name="inNombre">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+      </widget>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label_2">
@@ -34,7 +41,11 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="inApellido"/>
+      <widget class="QLineEdit" name="inApellido">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+      </widget>
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="label_3">
@@ -44,7 +55,11 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLineEdit" name="inTelefono"/>
+      <widget class="QLineEdit" name="inTelefono">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+      </widget>
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="label_4">
@@ -54,7 +69,11 @@
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QLineEdit" name="inEmail"/>
+      <widget class="QLineEdit" name="inEmail">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

@@ -17,6 +17,9 @@
    <iconset resource="recursos.qrc">
     <normaloff>:/recursos/cuaderno.png</normaloff>:/recursos/cuaderno.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(247, 225, 83);</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -83,6 +86,9 @@
    </item>
    <item>
     <widget class="QTableWidget" name="tblLista">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>
      </property>

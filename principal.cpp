@@ -105,7 +105,6 @@ void Principal::on_btnEliminar_clicked()
 {
 
     QList<QModelIndex>big = ui->tblLista->selectionModel()->selectedRows();
-
     if(big.isEmpty()){
         QMessageBox::information(this,"Seleccion","No se ha seleccionado ninguna fila :|");
         return;
@@ -115,18 +114,18 @@ void Principal::on_btnEliminar_clicked()
     QList<int>::iterator x;
     QList<QModelIndex>::iterator i;
 
-    for (i = big.begin(); i != big.end(); i++){
-        list.append(i->row());
+    for (auto &&i : big){
+        list.append(i.row());
     }
 
-    for (x = list.begin(); x != list.end(); x++){
-        ui->tblLista->removeRow(*x);
+    for (auto &&x : list){
+        ui->tblLista->removeRow(x);
     }
 }
 
-
 void Principal::on_btnEditar_clicked()
 {
+    int cont=0;
     QList<QModelIndex>seleccion = ui->tblLista->selectionModel()->selectedRows();
 
     if(seleccion.isEmpty()){
@@ -134,8 +133,22 @@ void Principal::on_btnEditar_clicked()
         return;
     }
 
+    QList<QModelIndex>::iterator i;
+
+    for (auto &&i : seleccion){
+        cont++;
+    }
+
+    if(cont>1){
+        QMessageBox::information(this,"Seleccion","Seleccione SOLO UNA fila");
+        QMessageBox about;
+        about.setWindowTitle("Habla Serio Mijin!!");
+        about.setIconPixmap(QPixmap(":/recursos/img.jpeg"));
+        about.exec();
+        return;
+    }
+
     int row = ui->tblLista->currentRow();
-    qDebug() << row ;
 
     QTableWidgetItem *nombre = ui->tblLista->item(row, NOMBRE);
     QTableWidgetItem *apellido = ui->tblLista->item(row, APELLIDO);
@@ -159,4 +172,3 @@ void Principal::on_btnEditar_clicked()
     ui->tblLista->setItem(row, TELEFONO, new QTableWidgetItem(p->telefono()));
     ui->tblLista->setItem(row, EMAIL, new QTableWidgetItem(p->email()));
 }
-

@@ -3,5 +3,6 @@
         <file>recursos/borrar.png</file>
         <file>recursos/editar.png</file>
         <file>recursos/cuaderno.png</file>
+        <file>recursos/img.jpeg</file>
     </qresource>
 </RCC>
